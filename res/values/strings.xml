@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Weather ToDay</string>
+    <string name="bg_description">Background</string>
+    
+    <!-- Labels -->
+    <string name="author">dannegm</string>
+    <string name="placeholder">lorem ipsum</string>
+    
+    <string name="placeholder_city">Esperando ciudad&#8230;</string>
+    <string name="placeholder_date">&#8230;</string>
+    <string name="placeholder_degress_up">0º</string>
+    <string name="placeholder_degress_down">0º</string>
+    
+    <!-- ActioBar -->
+    
+    <string name="action_search">Buscar</string>
+    <string name="action_refresh">Actualizar</string>
+    <string name="action_settings">Ajustes</string>
+
+</resources>
