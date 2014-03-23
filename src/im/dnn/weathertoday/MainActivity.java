@@ -16,13 +16,11 @@ import org.json.JSONObject;
 
 public class MainActivity extends Activity {
 	private String apiWeatherKey = "953a5a77a301d5c3";
-    private String apiWeatherUrl = "http://api.wunderground.com/api/" + apiWeatherKey + "/conditions/q/";
-    JSONArray WeatherResponse = null;
+	private String apiWeatherUrl = "http://api.wunderground.com/api/" + apiWeatherKey + "/conditions/q/";
+	JSONArray WeatherResponse = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
-		//requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
@@ -38,12 +36,12 @@ public class MainActivity extends Activity {
 	}
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle presses on the action bar items
-	    switch (item.getItemId()) {
-	        case R.id.action_refresh:
-	        	UpdateLocation();
-	            return true;
-	        default:
-	            return super.onOptionsItemSelected(item);
+		switch (item.getItemId()) {
+		case R.id.action_refresh:
+			UpdateLocation();
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
 	    }
 	}
 	
@@ -72,6 +70,7 @@ public class MainActivity extends Activity {
 			String apiRest = apiWeatherUrl + LatLang + ".json";
 			Toast.makeText(getApplicationContext(), "Petición a " + apiRest, Toast.LENGTH_LONG).show();
 			JSONObject json = JSONParser.getJSONfromURL(apiRest);
+			
 			if (json != null) {
 				try {
 					// Getting JSON Array
