@@ -6,6 +6,11 @@
 package im.dnn.weathertoday;
 
 // Utilerías android
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -89,59 +94,33 @@ public class MainActivity extends Activity {
 	}
 	
 	public void CallApiWeather () {
-		// Si las coordenadas son diferentes a 0,0
-		if (Loc.getLat() != 0 && Loc.getLat() != 0) {
-			// Construimos string para hacer la petición al API
-			String l_lat = (String) Double.toString(Loc.getLat());
-			String l_lng = (String) Double.toString(Loc.getLng());
-			String LatLang = l_lat + "," + l_lng;
+			//String l_lat = (String) Double.toString(Loc.getLat());
+			//String l_lng = (String) Double.toString(Loc.getLng());
+			String LatLang = "19.62313108,-99.01779141";
 			
-			// Construimos URL que llamará el API
 			String apiRest = apiWeatherUrl + LatLang + ".json";
-			// Mostramos un mensaje que os mostrará la url a la que se le hará petición
-			Toast.makeText(getApplicationContext(), "Petición a " + apiRest, Toast.LENGTH_LONG).show();
-			// Constuimos JSON a partir de la petición
-			JSONObject json = JSONParser.getJSONfromURL(apiRest);
-			
-			// Si obtenemos datos, continuamos
-			if (json != null) {
-				try {
-					// OteniendoJSON Array
-					WeatherResponse = json.getJSONArray("current_observation");
-					JSONObject wapi = WeatherResponse.getJSONObject(0);
-					
-					// Obtenemos el lugar actual según la API
-					JSONArray display_location_json = wapi.getJSONArray("display_location");
-					JSONObject display_location = display_location_json.getJSONObject(0);
-					String display_city = display_location.getString("city") + ", " + display_location.getString("country");
-					
-					// La mostramos en pantalla
-					TextView txtDisplayCity = (TextView) findViewById(R.id.cityname);
-					txtDisplayCity.setText(display_city);
-					
-					// Obtenemos temperaturas
-					String temp_c = wapi.getString("temp_c") + "º";
-					TextView txtDregressUp = (TextView) findViewById(R.id.degress_up);
-					txtDregressUp.setText(temp_c);
-					
-					String dewpoint_c = wapi.getString("dewpoint_c") + "º";
-					TextView txtDregressDown = (TextView) findViewById(R.id.degress_down);
-					txtDregressDown.setText(dewpoint_c);
-					
-					// Obtenemos la fecha en la que se hizo la cosulta
-					String local_time_rfc822 = wapi.getString("local_time_rfc822");
-					TextView txtDatedisplay = (TextView) findViewById(R.id.datedisplay);
-					txtDatedisplay.setText(local_time_rfc822);
-				
-				// Si tenemos unaexcepción... creo que debería mostrarlo en pantalla XD
-				} catch (JSONException e) {}
-				
-			// Si no tenemos datos, avisamos al usuario
-			} else {
-				Toast.makeText(getApplicationContext(), "Sin respuesta del servidor", Toast.LENGTH_LONG).show();
+			URL url = null;
+			try {
+				url = new URL(apiRest);
+			} catch (MalformedURLException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
 			}
-		} else {
-			Toast.makeText(getApplicationContext(), "Esperando ubicación", Toast.LENGTH_LONG).show();
-		}
+			InputStream urlInputStream = null;
+			try {
+				urlInputStream = url.openConnection().getInputStream();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			JSONObject json = null;
+			try {
+				json = new JSONObject(urlInputStream.toString());
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			Toast.makeText(getApplicationContext(), json.toString(), Toast.LENGTH_LONG).show();
 	}
 }
