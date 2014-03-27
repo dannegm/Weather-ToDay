@@ -115,7 +115,7 @@ public final class R {
         public static final int datedisplay=0x7f090006;
         public static final int degress_down=0x7f090005;
         public static final int degress_up=0x7f090004;
-        public static final int imageView1=0x7f090003;
+        public static final int iconWeather=0x7f090003;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
