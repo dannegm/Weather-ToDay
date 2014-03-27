@@ -2,18 +2,18 @@ package im.dnn.weathertoday;
 
 import com.loopj.android.http.*;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 
 import android.location.LocationManager;
 import android.location.LocationListener;
@@ -71,13 +71,37 @@ public class MainActivity extends Activity {
     public void CallApiWeather () throws JSONException {
 		String l_lat = (String) Double.toString(Loc.getLat());
 		String l_lng = (String) Double.toString(Loc.getLng());
+		
+		String LatLang = l_lat + "," + l_lng;
+		GetApiFlickr.SetLatLng(l_lat, l_lng);
+		
+		//GetApiFlickr.SetLatLng("19.62313108", "-99.01779141");
 		//String LatLang = "19.62313108,-99.01779141";
-		String LatLang = l_lng + "," + l_lng;
+		
+		String picUrl = GetApiFlickr.getUrlPicture();
+
+		AsyncHttpClient client = new AsyncHttpClient();
+		String[] allowedContentTypes = new String[] { "image/png", "image/jpeg", "image/gif" };
+		client.get(picUrl, new BinaryHttpResponseHandler(allowedContentTypes) {
+		    @Override
+		    public void onSuccess(byte[] fileData) {
+		        Bitmap bm = BitmapFactory.decodeByteArray(fileData, 0, fileData.length);
+		        ImageView bgFlickr = (ImageView) findViewById(R.id.BG_Weather);
+		        
+		        DisplayMetrics dm = new DisplayMetrics();
+		        getWindowManager().getDefaultDisplay().getMetrics(dm);
+
+		        int newBitmapW = dm.widthPixels;
+		        int newBitmaph = dm.heightPixels;
+		        bm = PicFilters.resize(bm, newBitmapW, newBitmaph);
+
+		        bgFlickr.setImageBitmap(bm);
+		    }
+		});
 
         GetApiWeather.get("conditions", LatLang, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(JSONObject json) {
-            	System.out.println(json.toString());
             	try {
                 	 // Getting JSON Array
             		JSONObject wapi = json.getJSONObject("current_observation");
@@ -99,9 +123,16 @@ public class MainActivity extends Activity {
             		txtDregressDown.setText(dewpoint_c);
 
             		// Día local_time_rfc822
-            		String local_time_rfc822 = wapi.getString("local_time_rfc822");
+            		String local_time_rfc822 = wapi.getString("weather");
             		TextView txtDatedisplay = (TextView) findViewById(R.id.datedisplay);
             		txtDatedisplay.setText(local_time_rfc822);
+            		
+            		// Icon
+            		String iconWeather = wapi.getString("icon");
+            		int iconWeatherID = getResources().getIdentifier(iconWeather, "drawable", getPackageName());
+            		ImageView imgIconWeatherView = (ImageView) findViewById(R.id.iconWeather);
+            	    Drawable imgIconWeather = getResources().getDrawable(iconWeatherID);
+            	    imgIconWeatherView.setImageDrawable(imgIconWeather);
 
                 } catch (JSONException e) {}
             }
