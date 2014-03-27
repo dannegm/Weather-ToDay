@@ -69,9 +69,10 @@ public class MainActivity extends Activity {
 	}
 
     public void CallApiWeather () throws JSONException {
-		//String l_lat = (String) Double.toString(Loc.getLat());
-		//String l_lng = (String) Double.toString(Loc.getLng());
-		String LatLang = "19.62313108,-99.01779141";
+		String l_lat = (String) Double.toString(Loc.getLat());
+		String l_lng = (String) Double.toString(Loc.getLng());
+		//String LatLang = "19.62313108,-99.01779141";
+		String LatLang = l_lng + "," + l_lng;
 
         GetApiWeather.get("conditions", LatLang, new JsonHttpResponseHandler() {
             @Override
