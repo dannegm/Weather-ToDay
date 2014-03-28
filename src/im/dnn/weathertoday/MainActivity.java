@@ -3,6 +3,7 @@ package im.dnn.weathertoday;
 import com.loopj.android.http.*;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,13 +22,50 @@ import android.location.LocationListener;
 import org.json.*;
 
 public class MainActivity extends Activity {
+	String LatLang = "";
+	String l_lat = "";
+	String l_lng = "";
+	
+	Config conf = null;
+
+	LocationManager milocManager = null;
+	LocationListener milocListener = null;
+
+	Handler handler = new Handler();
+	Runnable updateData = new Runnable() {
+		public void run(){
+			handler.postDelayed(updateData, 500);
+			if (Loc.getLat() != 0 || Loc.getLng() != 0) {
+				milocManager.removeUpdates(milocListener);
+				l_lat = (String) Double.toString(Loc.getLat());
+				l_lng = (String) Double.toString(Loc.getLng());
+				
+				conf.setLat(l_lat);
+				conf.setLng(l_lng);
+				LatLang = l_lat + "," + l_lng;
+				UpdateWeather();
+				handler.removeCallbacks(updateData);
+			} else {
+				UpdateLocation();
+			}
+		}
+	};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		BuildLocation();
+		conf = new Config(getApplicationContext());
+		
+		if (conf.getLat() != null && conf.getLng() != null) {
+			l_lat = conf.getLat();
+			l_lng = conf.getLng();
+			LatLang = l_lat + "," + l_lng;
+			UpdateWeather();
+		} else {
+			updateData.run();
+		}
 	}
 
 	@Override
@@ -41,26 +79,25 @@ public class MainActivity extends Activity {
 		switch (item.getItemId()) {
 		// Boton refresh
 		case R.id.action_refresh:
-			UpdateLocation();
+			updateData.run();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 	    }
 	}
-	
-	public void BuildLocation () {
-		LocationManager milocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+	public void UpdateLocation () {
+		milocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		MiLocationListener locc = new MiLocationListener();
 		locc.setContext(getApplicationContext());
 		
-		LocationListener milocListener = locc;
-		milocManager.requestLocationUpdates( LocationManager.GPS_PROVIDER, 0, 0, milocListener);
-		
-		UpdateLocation();
+		milocListener = locc;
+		Toast.makeText(getApplicationContext(), "Esperando ubicación", Toast.LENGTH_LONG).show();
+		milocManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, milocListener);
+		milocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, milocListener);
 	}
 	
-	public void UpdateLocation () {
-		Toast.makeText(getApplicationContext(), "Esperando ubicación", Toast.LENGTH_LONG).show();
+	public void UpdateWeather () {
 		try {
 			CallApiWeather();
 		} catch (JSONException e) {
@@ -69,15 +106,7 @@ public class MainActivity extends Activity {
 	}
 
     public void CallApiWeather () throws JSONException {
-		String l_lat = (String) Double.toString(Loc.getLat());
-		String l_lng = (String) Double.toString(Loc.getLng());
-		
-		String LatLang = l_lat + "," + l_lng;
 		GetApiFlickr.SetLatLng(l_lat, l_lng);
-		
-		//GetApiFlickr.SetLatLng("19.62313108", "-99.01779141");
-		//String LatLang = "19.62313108,-99.01779141";
-		
 		String picUrl = GetApiFlickr.getUrlPicture();
 
 		AsyncHttpClient client = new AsyncHttpClient();
@@ -114,18 +143,13 @@ public class MainActivity extends Activity {
             		txtDisplayCity.setText(display_city);
 
             		// Temperaturas
-            		String temp_c = wapi.getString("temp_c") + "º";
+            		String temp_c = wapi.getInt("temp_c") + "º";
             		TextView txtDregressUp = (TextView) findViewById(R.id.degress_up);
-            		txtDregressUp.setText(temp_c);
+            		txtDregressUp.setText(temp_c.toString());
 
-            		String dewpoint_c = wapi.getString("dewpoint_c") + "º";
+            		String dewpoint_c = wapi.getInt("dewpoint_c") + "º";
             		TextView txtDregressDown = (TextView) findViewById(R.id.degress_down);
-            		txtDregressDown.setText(dewpoint_c);
-
-            		// Día local_time_rfc822
-            		String local_time_rfc822 = wapi.getString("weather");
-            		TextView txtDatedisplay = (TextView) findViewById(R.id.datedisplay);
-            		txtDatedisplay.setText(local_time_rfc822);
+            		txtDregressDown.setText(dewpoint_c.toString());
             		
             		// Icon
             		String iconWeather = wapi.getString("icon");
@@ -133,6 +157,12 @@ public class MainActivity extends Activity {
             		ImageView imgIconWeatherView = (ImageView) findViewById(R.id.iconWeather);
             	    Drawable imgIconWeather = getResources().getDrawable(iconWeatherID);
             	    imgIconWeatherView.setImageDrawable(imgIconWeather);
+            	    
+            	    // Weather Now
+            		int textWeatherID = getResources().getIdentifier(iconWeather, "string", getPackageName());
+            		String txtWeatherNow = getResources().getString(textWeatherID);
+            		TextView txtDatedisplay = (TextView) findViewById(R.id.datedisplay);
+            		txtDatedisplay.setText(txtWeatherNow);
 
                 } catch (JSONException e) {}
             }
