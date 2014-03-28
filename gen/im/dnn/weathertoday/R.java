@@ -134,11 +134,53 @@ public final class R {
          */
         public static final int author=0x7f060002;
         public static final int bg_description=0x7f060001;
+        /**   Weathers 
+         */
+        public static final int chanceflurries=0x7f06000b;
+        public static final int chancerain=0x7f06000c;
+        public static final int chancesleet=0x7f06000d;
+        public static final int chancesnow=0x7f06000e;
+        public static final int chancetstorms=0x7f06000f;
+        public static final int clear=0x7f060010;
+        public static final int cloudy=0x7f060011;
+        public static final int flurries=0x7f060012;
+        public static final int fog=0x7f060013;
+        public static final int hazy=0x7f060014;
+        public static final int mostlycloudy=0x7f060015;
+        public static final int mostlysunny=0x7f060016;
+        /**   Weathers Night 
+         */
+        public static final int nt_chanceflurries=0x7f06001e;
+        public static final int nt_chancerain=0x7f06001f;
+        public static final int nt_chancesleet=0x7f060020;
+        public static final int nt_chancesnow=0x7f060021;
+        public static final int nt_chancetstorms=0x7f060022;
+        public static final int nt_clear=0x7f060023;
+        public static final int nt_cloudy=0x7f060024;
+        public static final int nt_flurries=0x7f060025;
+        public static final int nt_fog=0x7f060026;
+        public static final int nt_hazy=0x7f060027;
+        public static final int nt_mostlycloudy=0x7f060028;
+        public static final int nt_mostlysunny=0x7f060029;
+        public static final int nt_partlycloudy=0x7f06002a;
+        public static final int nt_partlysunny=0x7f06002b;
+        public static final int nt_rain=0x7f06002c;
+        public static final int nt_sleet=0x7f06002d;
+        public static final int nt_snow=0x7f06002e;
+        public static final int nt_sunny=0x7f06002f;
+        public static final int nt_tstorms=0x7f060030;
+        public static final int partlycloudy=0x7f060017;
+        public static final int partlysunny=0x7f060018;
         public static final int placeholder=0x7f060003;
         public static final int placeholder_city=0x7f060004;
         public static final int placeholder_date=0x7f060005;
         public static final int placeholder_degress_down=0x7f060007;
         public static final int placeholder_degress_up=0x7f060006;
+        public static final int rain=0x7f060019;
+        public static final int sleet=0x7f06001a;
+        public static final int snow=0x7f06001b;
+        public static final int sunny=0x7f06001c;
+        public static final int tstorms=0x7f06001d;
     }
     public static final class style {
         public static final int ActionBar_Solid_Purple=0x7f070004;
