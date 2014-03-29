@@ -135,21 +135,10 @@ public class MainActivity extends Activity {
                 	 // Getting JSON Array
             		JSONObject wapi = json.getJSONObject("current_observation");
 
-            		// Display Location
-            		JSONObject display_location = wapi.getJSONObject("display_location");
-            		String display_city = display_location.getString("city") + ", " + display_location.getString("country");
-
-            		TextView txtDisplayCity = (TextView) findViewById(R.id.cityname);
-            		txtDisplayCity.setText(display_city);
-
             		// Temperaturas
             		String temp_c = wapi.getInt("temp_c") + "º";
             		TextView txtDregressUp = (TextView) findViewById(R.id.degress_up);
             		txtDregressUp.setText(temp_c.toString());
-
-            		String dewpoint_c = wapi.getInt("dewpoint_c") + "º";
-            		TextView txtDregressDown = (TextView) findViewById(R.id.degress_down);
-            		txtDregressDown.setText(dewpoint_c.toString());
             		
             		// Icon
             		String iconWeather = wapi.getString("icon");
@@ -161,7 +150,7 @@ public class MainActivity extends Activity {
             	    // Weather Now
             		int textWeatherID = getResources().getIdentifier(iconWeather, "string", getPackageName());
             		String txtWeatherNow = getResources().getString(textWeatherID);
-            		TextView txtDatedisplay = (TextView) findViewById(R.id.datedisplay);
+            		TextView txtDatedisplay = (TextView) findViewById(R.id.weatherDisplay);
             		txtDatedisplay.setText(txtWeatherNow);
 
                 } catch (JSONException e) {}
