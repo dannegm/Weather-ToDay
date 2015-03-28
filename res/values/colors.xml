@@ -1,8 +1,0 @@
-	<resources>
-        <color name="white">#fff</color>
-        <color name="gray_aplha">#aa000000</color>
-        <color name="purple">#380e30</color>
-        
-        <color name="bgActioBar">#520c45</color>
-        <color name="purple2">#aa841d6f</color>
-    </resources>
