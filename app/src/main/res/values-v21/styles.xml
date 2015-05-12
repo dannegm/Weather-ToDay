@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="AppTheme.Base">
+        <item name="android:colorPrimary">@color/wtd_purple</item>
+        <item name="android:colorPrimaryDark">@color/wtd_purpleDark</item>
+        <item name="android:colorAccent">@color/wtd_purple_0</item>
+        <item name="background">@color/g_bg</item>
+    </style>
+
+</resources>

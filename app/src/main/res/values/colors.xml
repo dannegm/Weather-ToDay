@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Colores generales -->
+    <color name="g_bg">#fafafa</color>
+
+    <color name="g_trans">#00000000</color>
+    <color name="g_white">#ffffff</color>
+    <color name="g_black">#000000</color>
+    <color name="g_gray_statusbar">#c8c8c8</color>
+
+    <color name="g_gray">#eeeeee</color>
+    <color name="g_gray_aplha">#aa000000</color>
+
+    <color name="c_text_dark">#282828</color>
+    <color name="c_text_oxford">#595959</color>
+    <color name="c_text_gray">#aeaeae</color>
+    <color name="c_text_white">#eff7f5</color>
+
+    <!-- Prymary colors -->
+    <color name="wtd_purple">#6B0045</color>
+    <color name="wtd_purpleDark">#45002C</color>
+
+    <color name="wtd_purple_1">#EB0097</color>
+    <color name="wtd_purple_2">#AB006E</color>
+    <color name="wtd_purple_3">#6B0045</color>
+    <color name="wtd_purple_4">#5E003D</color>
+    <color name="wtd_purple_5">#45002C</color>
+
+    <!-- Secondary -->
+
+    <color name="wtd_red_1">#6B1005</color>
+    <color name="wtd_red_2">#750616</color>
+    <color name="wtd_purple_0">#6C0675</color>
+    <color name="wtd_purple_6">#47056B</color>
+
+    <!-- Aux Colors -->
+
+    <color name="black_overlay">#66000000</color>
+</resources>

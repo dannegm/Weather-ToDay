@@ -1,8 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="AppTheme.Base">
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/wtd_purple</item>
+        <item name="colorPrimaryDark">@color/wtd_purpleDark</item>
+        <item name="colorAccent">@color/wtd_purple_0</item>
+        <item name="background">@color/g_bg</item>
+    </style>
+
+    <style name="WTD_ActionBar" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="android:textColorPrimary">@color/g_white</item>
+        <item name="android:textColorSecondary">@color/g_white</item>
+        <item name="android:background">@color/wtd_purple</item>
+    </style>
+
+    <style name="WTD_NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+    </style>
+
+    <!-- Aux Styles -->
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">?android:attr/listDivider</item>
+    </style>
+    <style name="DividerVR">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">#ebebeb</item>
+    </style>
 </resources>

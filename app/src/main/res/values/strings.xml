@@ -1,6 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Weather ToDay</string>
+    <!-- App Configs Text -->
+    <string name="app_name" translatable="false">Weather ToDay</string>
+    <string name="title_activity_main" translatable="false">Weather ToDay</string>
 
+    <!-- Genéricos -->
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txt_void" translatable="false">...</string>
+
+    <!--  Weathers -->
+
+    <string name="chanceflurries">Chance Flurries</string>
+    <string name="chancerain">Chance Rain</string>
+    <string name="chancesleet">Chance Sleet</string>
+    <string name="chancesnow">Chance Snow</string>
+    <string name="chancetstorms">Chance Storms</string>
+    <string name="clear">Clear</string>
+    <string name="cloudy">Cloudy</string>
+    <string name="flurries">Flurries</string>
+    <string name="fog">Fog</string>
+    <string name="hazy">Hazy</string>
+    <string name="mostlycloudy">Mostly Cloudy</string>
+    <string name="mostlysunny">Mostly Sunny</string>
+    <string name="partlycloudy">Partly Cloudy</string>
+    <string name="partlysunny">Partly Sunny</string>
+    <string name="rain">Rain</string>
+    <string name="sleet">Sleet</string>
+    <string name="snow">Snow</string>
+    <string name="sunny">Sunny</string>
+    <string name="tstorms">Storms</string>
+
+    <!--  Weathers Night -->
+
+    <string name="nt_chanceflurries">Chance Flurries</string>
+    <string name="nt_chancerain">Chance Rain</string>
+    <string name="nt_chancesleet">Chance Sleet</string>
+    <string name="nt_chancesnow">Chance Snow</string>
+    <string name="nt_chancetstorms">Chance Storms</string>
+    <string name="nt_clear">Clear</string>
+    <string name="nt_cloudy">Cloudy</string>
+    <string name="nt_flurries">Flurries</string>
+    <string name="nt_fog">Fog</string>
+    <string name="nt_hazy">Hazy</string>
+    <string name="nt_mostlycloudy">Mostly Cloudy</string>
+    <string name="nt_mostlysunny">Mostly Clear</string>
+    <string name="nt_partlycloudy">Partly Cloudy</string>
+    <string name="nt_partlysunny">Partly Clear</string>
+    <string name="nt_rain">Rain</string>
+    <string name="nt_sleet">Sleet</string>
+    <string name="nt_snow">Snow</string>
+    <string name="nt_sunny">Clear</string>
+    <string name="nt_tstorms">Storms</string>
+
 </resources>

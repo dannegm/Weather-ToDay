@@ -8,6 +8,13 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.util.Log;
+
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 
 public class LocationService extends Service implements LocationListener {
     private final Context ctx;
@@ -68,5 +75,27 @@ public class LocationService extends Service implements LocationListener {
 
     public Location getLocation () {
         return location;
+    }
+
+    public JsonObject getLocationJson () {
+        Log.i("Location", "Pidiendo Json");
+        try {
+            Double latitude = location.getLatitude();
+            Double longitude = location.getLongitude();
+            Double altitude = location.getAltitude();
+
+            String stringLocation = "{\"latitude\":\"__lat__\",\"longitude\":\"__lng__\",\"altitude\":\"__alt__\"}";
+            stringLocation = stringLocation.replaceAll("__lat__", String.valueOf(latitude));
+            stringLocation = stringLocation.replaceAll("__lng__", String.valueOf(longitude));
+            stringLocation = stringLocation.replaceAll("__alt__", String.valueOf(altitude));
+
+            JsonParser parserLocation = new JsonParser();
+            JsonObject jsonLocation = (JsonObject) parserLocation.parse(stringLocation);
+
+            return jsonLocation;
+        } catch (Exception ex) {
+            Log.e("Location", ex.getMessage());
+            return null;
+        }
     }
 }

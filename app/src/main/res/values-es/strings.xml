@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_settings">Configuración</string>
+    <string name="hello_blank_fragment">Hola Fragment Vacio</string>
+    <string name="hello_world">Hola Mundo!</string>
+    <string name="chanceflurries">Posibles Ráfagas</string>
+    <string name="chancerain">Posible lluvia</string>
+    <string name="chancesleet">Posible llovizna</string>
+    <string name="chancesnow">Probablemente Nieve</string>
+    <string name="chancetstorms">Posibilidades de Tormentas</string>
+    <string name="clear">Cielo Despejado</string>
+    <string name="cloudy">Nublado</string>
+    <string name="flurries">Ráfagas</string>
+    <string name="fog">Neblina</string>
+    <string name="hazy">Brumoso</string>
+    <string name="mostlycloudy">Mayormente Nublado</string>
+    <string name="mostlysunny">Mayormente Soleado</string>
+    <string name="nt_chanceflurries">Posibles Ráfagas</string>
+    <string name="nt_chancerain">Posible Lluvia</string>
+    <string name="nt_chancesleet">Posible Llovizna</string>
+    <string name="nt_chancesnow">Probablemente Nieve</string>
+    <string name="nt_chancetstorms">Posibilidades de Tormentas</string>
+    <string name="nt_clear">Noche Despejada</string>
+    <string name="nt_cloudy">Nublado</string>
+    <string name="nt_flurries">Ráfagas</string>
+    <string name="nt_fog">Neblina</string>
+    <string name="nt_hazy">Brumoso</string>
+    <string name="nt_mostlycloudy">Mayormente Nublado</string>
+    <string name="nt_mostlysunny">Mayormente despejado</string>
+    <string name="nt_partlycloudy">Parcialmente Nublado</string>
+    <string name="nt_partlysunny">Parcialemnte Despejado</string>
+    <string name="nt_rain">Lluvia</string>
+    <string name="nt_sleet">Llovizna</string>
+    <string name="nt_snow">Nieve</string>
+    <string name="nt_sunny">Noche Despejada</string>
+    <string name="nt_tstorms">Tormentas</string>
+    <string name="partlycloudy">Parcialmente Nublado</string>
+    <string name="partlysunny">Parcialmente Soleado</string>
+    <string name="rain">Lluvia</string>
+    <string name="sleet">Llovizna</string>
+    <string name="snow">Nieve</string>
+    <string name="sunny">Día soleado</string>
+    <string name="tstorms">Tormentas</string>
+</resources>

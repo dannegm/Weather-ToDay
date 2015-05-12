@@ -36,6 +36,9 @@ dependencies {
     // Floating Action Button
     compile 'com.getbase:floatingactionbutton:1.2.1'
 
+    // Parallax Pager
+    compile 'com.xgc1986.android:parallaxpagertransformer:1.0.3'
+
     // Dots Pagination
     compile 'me.relex:circleindicator:1.1.2@aar'
 }
